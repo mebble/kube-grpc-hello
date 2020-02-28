@@ -44,7 +44,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClassName = 'kube.grpc.hello.App'
+    mainClassName = 'kube.grpc.hello.Main'
 }
 
 // how to find the java stubs generated from the proto files
