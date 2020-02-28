@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package helloworld;
+
+option java_package = "kube.grpc.hello";
+option java_outer_classname = "HelloWorldProto";
+option java_multiple_files = true;
+
+service HelloWorld {
+    rpc Hello (HelloRequest) returns (HelloReply);
+}
+
+message HelloRequest {
+    string text = 1;
+}
+
+message HelloReply {
+    string text = 1;
+}
