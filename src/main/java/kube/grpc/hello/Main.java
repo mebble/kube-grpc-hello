@@ -1,12 +1,17 @@
 package kube.grpc.hello;
 
 import java.io.IOException;
+import java.util.Optional;
+
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 
 public class Main {
     public static void main(String[] args) throws IOException, InterruptedException {
-        int PORT = 9000;
+        int PORT = Optional
+            .ofNullable(System.getenv("PORT"))
+            .map(Integer::parseInt)
+            .orElse(9000);
         Server server = ServerBuilder.forPort(PORT)
                 .addService(new HelloWorldService())
                 .build()
