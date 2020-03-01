@@ -48,7 +48,7 @@ application {
 }
 
 // how to find the java stubs generated from the proto files
-// (the sourceSet for the *.proto files is automatically looked for next to the src/main/java sourceSet)
+// (the sourceSet for the *.proto files is automatically looked for next to the src/main/java sourceSet. If I put proto files in other places, I'd have to mention that here)
 sourceSets {
     main {
         java {

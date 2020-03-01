@@ -2,12 +2,18 @@ syntax = "proto3";
 
 package helloworld;
 
+import "google/api/annotations.proto";
+
 option java_package = "kube.grpc.hello";
 option java_outer_classname = "HelloWorldProto";
 option java_multiple_files = true;
 
 service HelloWorld {
-    rpc SayHello (HelloRequest) returns (HelloReply);
+    rpc SayHello (HelloRequest) returns (HelloReply) {
+        option (google.api.http) = {
+            get: "/sayhello/{text}"
+        };
+    }
 }
 
 message HelloRequest {
