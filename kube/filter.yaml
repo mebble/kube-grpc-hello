@@ -1,0 +1,23 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: EnvoyFilter
+metadata:
+  name: grpc-json-transcoding-filter
+spec:
+  workloadLabels:
+    app: backend
+  filters:
+  - listenerMatch:
+      portNumber: 3000  # which port the grpc server is running. This config will be used by the injected sidecar
+      listenerType: SIDECAR_INBOUND
+      listenerProtocol: HTTP
+    insertPosition:
+      index: BEFORE
+      relativeTo: envoy.router
+    filterName: envoy.grpc_json_transcoder
+    filterType: HTTP
+    filterConfig:
+      proto_descriptor: '../build/descriptor-set-out/proto-descriptor.pb'
+      services:
+      - helloworld.HelloWorld
+      printOptions:
+        alwaysPrintPrimitiveFields: True
