@@ -5,7 +5,7 @@ WORKDIR /root/app
 
 COPY src ./src
 COPY gradle ./gradle
-COPY build.gradle settings.gradle gradlew gradlew.bat proto-descriptor-gen.sh ./
+COPY build.gradle settings.gradle gradlew gradlew.bat ./
 
 RUN ./gradlew shadowJar
 
