@@ -7,7 +7,7 @@ COPY src ./src
 COPY gradle ./gradle
 COPY build.gradle settings.gradle gradlew gradlew.bat proto-descriptor-gen.sh ./
 
-RUN ./gradlew build
+RUN ./gradlew shadowJar
 
 ENV PORT 3000
-CMD ["./gradlew", "run"]   # it downloads gradle again. it doesn't seem to use the build dir. Should I run the built jar instead?
+CMD ["java", "-jar", "build/libs/kube-grpc-hello-all.jar"]
