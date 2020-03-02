@@ -32,6 +32,9 @@ dependencies {
     // grpc dependencies
     implementation "io.grpc:grpc-protobuf:${grpcVersion}"
     implementation "io.grpc:grpc-stub:${grpcVersion}"
+//    implementation "io.grpc:grpc-all:${grpcVersion}"
+//    implementation "io.grpc:grpc-core:${grpcVersion}"
+
 
     // testing dependencies
     testImplementation 'junit:junit:4.12'
@@ -45,6 +48,12 @@ dependencies {
 application {
     // Define the main class for the application.
     mainClassName = 'kube.grpc.hello.Main'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'kube.grpc.hello.Main'
+    }
 }
 
 // how to find the java stubs generated from the proto files
