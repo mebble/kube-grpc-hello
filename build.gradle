@@ -15,6 +15,9 @@ plugins {
 
     // protoc gradle plugin
     id "com.google.protobuf" version "0.8.11"
+
+    // uber jar plugin
+    id 'com.github.johnrengelman.shadow' version '5.2.0'
 }
 
 repositories {
@@ -50,11 +53,15 @@ application {
     mainClassName = 'kube.grpc.hello.Main'
 }
 
-jar {
-    manifest {
-        attributes 'Main-Class': 'kube.grpc.hello.Main'
-    }
-}
+// describe the jar manifest in case we're not generating an uber jar
+//jar {
+//    manifest {
+//        attributes(
+//            'Main-Class': 'kube.grpc.hello.Main',
+//            'Class-Path': configurations.runtimeClasspath.files.collect { it.getName() }.join(' ')
+//        )
+//    }
+//}
 
 // how to find the java stubs generated from the proto files
 // (the sourceSet for the *.proto files is automatically looked for next to the src/main/java sourceSet. If I put proto files in other places, I'd have to mention that here)
